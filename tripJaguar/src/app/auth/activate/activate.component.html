@@ -1,0 +1,21 @@
+<div class="row body text-center" >
+
+  <div class="col-md-12 bloque">
+
+    <div *ngIf="showLoading">
+      <div class="spinner-grow text-danger loading" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+      <p class="mensaje">Activando cuenta ....</p>
+    </div>
+
+    <div *ngIf="!showLoading">
+      <img [src]="URL_PUBLIC+'images/'+image+'.svg'" alt="">
+      <p class="mensaje">{{mensaje}}</p>
+
+
+    </div>
+
+  </div>
+
+</div>

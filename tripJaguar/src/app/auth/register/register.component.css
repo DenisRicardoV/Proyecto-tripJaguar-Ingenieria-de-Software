@@ -1,0 +1,44 @@
+#register{
+
+}
+
+#register h1{
+    font-size: xx-large;
+    color: rgb(96, 105, 109);
+}
+#register .card{
+    display: table;
+    width: 100%;
+    border: none;
+}
+
+#register .card img{
+    vertical-align: middle;
+    width: 40%;
+}
+
+#register a:hover img  {
+    filter: brightness(110%);
+    -webkit-filter: brightness(110%);
+}
+#register .card a{
+    color: white;
+    font-weight: bold;
+    font-size: large;
+}
+
+
+
+  /*responsive*/
+  
+@media (max-width: 768px) {
+    #register-detail form, #register-detail h1{
+        padding: 0px;
+    }
+    #register h1{
+        font-size: x-large;
+        
+    }
+
+
+}

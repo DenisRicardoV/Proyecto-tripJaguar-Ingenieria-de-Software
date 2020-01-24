@@ -1,0 +1,101 @@
+  /* Specific css for <Alert Type> */
+  .alertsContainer .alertsRow.error  {
+    border: 1px solid #ffc549;
+}
+/* .alertsContainer .alertsRow.<Alert Type> .iconpanel {
+    background:#ffc549;
+    color: #fff;
+}
+.alertsContainer .alertsRow.<Alert Type> .messagepanel {
+    color: #000;
+    background: #fff;
+}
+.alertsContainer .alertsRow.<Alert Type> .closeicon {
+    color: #000;
+}
+.alertsContainer .alertsRow.<Alert Type> .closeicon a {
+    color: #000;
+    text-decoration: none;
+    font-size: 12px;
+} */
+/* Specific css for <Alert Type> */
+
+/* alerts*/
+.alert-danger{
+    margin-top: 10px;
+}
+
+.login{
+    height: 20px;
+}
+
+
+
+#login .cabecera{
+    background-color: #1c4065;
+    border-color: #1c4065 !important;
+    color: white;
+}
+#login .cabecera h1{
+    font-weight: 500;
+    margin: 0px;
+    font-size: 2em;
+}
+#login .cabecera p{
+    margin: 0 0 10px;
+}
+
+/*form*/
+
+
+.form-control:focus{
+    border-color:#25476a;
+    box-shadow:none;
+    transition-duration:.5s;
+}
+
+/*--------*/
+#login .formulario .socials{
+    padding-top: 12px;
+}
+#login .formulario .socials p{
+    font-size: 14px;
+    border-top: 1px solid #ccc;
+    color: dimgrey;
+}
+#login .formulario .socials a{
+    color: white;
+    opacity: 1;
+    padding: 4px;
+}
+
+#login .formulario .options, #login .formulario button{
+    padding-top: 10px;
+}
+#login .formulario a{
+    padding: 1px;
+}
+#login .formulario .options a:hover{
+    color: #c2baa2;
+    font-weight: bold;
+}
+#login .content{
+  padding: 0px;
+}
+
+#login .cuerpo{
+  padding: 10px;
+}
+  /*responsive*/
+
+@media (max-width: 768px) {
+
+    #login .cabecera h1{
+        font-size: x-large;
+    }
+    #login .cabecera p{
+        font-size: smaller;
+    }
+
+
+}

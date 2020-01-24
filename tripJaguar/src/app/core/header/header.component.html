@@ -1,0 +1,67 @@
+
+<header >
+
+  <div class="d-flex flex-column flex-md-row align-items-center p-2 px-md-4 bg-white border-bottom box-shadow">
+      <h5 class="my-0 mr-md-auto font-weight-normal">
+        <a class="navbar-brand" [routerLink]="['/']">
+          <img [src]="URL_PUBLIC + 'logo.png'"   width="130" height="70" class="d-inline-block align-top" alt="" alt="">
+        </a>
+      </h5>
+
+      <nav class="my-2 my-md-0 mr-md-3 nav">
+
+        <div *ngIf="user  && user.name">
+
+
+          <!-- Menu para Agencia -->
+          <li class="nav-item dropdown" *ngIf="user.type == 1">
+            <a href="#" data-toggle="dropdown" class="dropdown-toggle nav-link dropdown-user-link">
+              <span class="avatar avatar-online">
+                <img [src]="URL_PUBLIC + 'images/users/'+ generateurl(user)"  alt="avatar"><i></i>
+              </span>
+              <h6 class="user-name"> {{user.name}}</h6><i class="caret"></i>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" [routerLink]="['/agencia/tours/lista']"><i class="fa fa-shopping-cart"></i> Mis Paquetes</a>
+              <a class="dropdown-item"  [routerLink]="['/agencia/tours/nuevo']"><i class="fa fa-pencil-square-o"></i> Nuevo Paquete</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" (click)="salir()"><i class="fa fa-power-off"></i> Salir</a>
+            </div>
+          </li>
+
+
+          <!-- Menu para Turista -->
+          <li class="nav-item dropdown" *ngIf="user.type == 0">
+            <a href="#" data-toggle="dropdown" class="dropdown-toggle nav-link dropdown-user-link">
+              <span class="avatar avatar-online">
+                <img [src]="URL_PUBLIC + 'images/users/'+ generateurl(user)"  alt="avatar"><i></i>
+              </span>
+              <h6 class="user-name"> {{user.name}}</h6><i class="caret"></i>
+            </a>
+
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" [routerLink]="['/turista/reservas']"><i class="fa fa-shopping-cart"></i> Mis Reservas</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" type="button" (click)="salir()"><i class="fa fa-power-off"></i> Salir</a>
+            </div>
+          </li>
+
+        </div>
+        <a class="p-2 text-dark" ></a>
+
+        <!-- No existe Usuario -->
+        <div *ngIf="!user">
+          <a class="p-2 text-dark"  [routerLink]="['/login']">
+            <span class="icon-1">
+              <fa name="user" ></fa>
+            </span>
+            Login
+         </a>
+          <a class="p-2 text-dark" [routerLink]="['/registrarse']" class="btn  mr-sm-2 button-2">Registrarse</a>
+        </div>
+
+      </nav>
+    </div>
+
+</header>
+

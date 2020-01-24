@@ -1,0 +1,29 @@
+<div class="container-fluid padding-body  pad-top " id="register">
+
+    <div class="row text-center">
+        <h1 class="col-12 pad-bottom-30" >Registro de Usuarios</h1>
+        <div class="col-12 col-md-6 ">
+            <div class="card ">
+                <a [routerLink]="['/registrarse/viajero']">
+                  <img class="card-img-top" [src]="URL_PUBLIC+'images/registro-viajero.png'" alt="Card image cap">
+                </a>
+                <div class="card-body">
+                  <a [routerLink]="['/registrarse/viajero']"  class="btn btn-success col-12" role="button">Soy Viajero</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-6 ">
+          <div class="card ">
+            <a [routerLink]="['/registrarse/agencia']">
+              <img class="card-img-top" [src]="URL_PUBLIC+'images/registro-agencia.png'" alt="Card image cap">
+            </a>
+            <div class="card-body">
+                <a [routerLink]="['/registrarse/agencia']" class="btn btn-primary col-12" role="button">Agencia de Viaje</a>
+            </div>
+          </div>
+
+        </div>
+    </div>
+
+  </div>

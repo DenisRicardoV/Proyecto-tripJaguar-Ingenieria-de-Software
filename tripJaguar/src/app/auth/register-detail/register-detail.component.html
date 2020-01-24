@@ -1,0 +1,371 @@
+<div class="container-fluid padding-body  pad-top" id="register-detail">
+
+    <div class="row">
+
+      <div class="col-12 row" *ngIf="option=='viajero'" >
+
+        <div class="col-12 col-md-6">
+          <h1 class="pad-bottom-30">Ingresa tus Datos</h1>
+          <form [formGroup]="viajeroForm">
+
+
+              <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label for="inputName">Nombre</label>
+                    <input type="text" formControlName="name"  class="form-control" id="inputName" name="name" [ngClass]="{ 'is-invalid': submitted && f.name.errors }">
+
+                    <div *ngIf="f.name.errors" class="invalid-feedback">
+                        <div *ngIf="f.name.errors.required">
+                            El campo Nombre es Obligatorio
+                        </div>
+                    </div>
+
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="inputLastName">Apellidos</label>
+                    <input type="text" formControlName="lastname"  class="form-control" id="inputLastName" name="lastname" [ngClass]="{ 'is-invalid': submitted && f.lastname.errors }">
+
+                    <div *ngIf="f.lastname.errors" class="invalid-feedback">
+                        <div *ngIf="f.lastname.errors.required">
+                            El Campo Apellidos es Obligatorio
+                        </div>
+                    </div>
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label for="inputEmail">Pais </label>
+                  <select class="custom-select custom-select-md" formControlName="country"  name="pais" [ngClass]="{ 'is-invalid': submitted && f.country.errors }">
+                      <option value="Peru">Peru</option>
+                      <option value="Argentina">Argentina</option>
+                      <option value="Chile">Chile</option>
+                      <option value="Ecuador">Ecuador</option>
+                      <option value="Brasil">Brasil</option>
+                      <option value="Chile">Uruguay</option>
+                      <option value="Colombia">Colombia</option>
+                      <option value="Bolivia">Bolivia</option>
+                      <option value="Venezuela">Venezuela</option>
+                      <option value="Europa">Paises de Europa</option>
+                      <option value="Asia">Paises de Asia</option>
+                  </select>
+
+                  <div *ngIf="f.country.errors" class="invalid-feedback">
+                      <div *ngIf="f.country.errors.required">
+                          Seleccione Un pais
+                      </div>
+                  </div>
+              </div>
+
+              <div class="form-group">
+                  <label for="inputEmail">Correo Eletronico</label>
+                  <input type="text" formControlName="email"  class="form-control" id="inputEmail"  name="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+
+                  <div *ngIf="f.email.errors" class="invalid-feedback">
+                      <div *ngIf="f.email.errors.required">
+                          El Campo Correo Electronico es Obligatorio
+                      </div>
+                      <div *ngIf="f.email.errors.email">
+                          Ingrese un Correo Valido
+                      </div>
+                  </div>
+                </div>
+              <div class="form-group">
+                  <label for="inputPassword">Contraseña</label>
+                  <input type="password" formControlName="password"  class="form-control" id="inputPassword"  name="password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+
+                  <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                      <div *ngIf="f.password.errors.required">
+                          Ingrese Contraseña
+                      </div>
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label for="inputPasswordConfirm">Confirmar Contraseña</label>
+                  <input type="password" formControlName="confirmPassword"   class="form-control" id="inputPasswordConfirm"  name="passwordConfirm" [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }" >
+                  <div *ngIf="submitted && f.confirmPassword.errors" class="invalid-feedback">
+                    <div *ngIf="f.confirmPassword.errors.required">
+                        Ingrese Confirmacion Contraseña
+                    </div>
+                    <div *ngIf="f.confirmPassword.errors.mismatch && !f.confirmPassword.errors.required">Las Contraseñas no coinciden</div>
+                </div>
+              </div>
+
+              <div class="custom-control custom-checkbox pad-bottom-30">
+                <input type="checkbox" formControlName="accept"  class="custom-control-input" id="customCheck1" [ngClass]="{ 'is-invalid': submitted && f.accept.errors }">
+                <label class="custom-control-label" for="customCheck1">Acepto Los <a>terminos y condiciones de Uso</a> </label>
+
+                <div *ngIf="f.accept.errors" class="invalid-feedback">
+                    <div *ngIf="f.accept.errors.required">
+                        Acepte los terminos de Acuerdo
+                    </div>
+                </div>
+              </div>
+
+              <div class="col-md-12 text-center">
+                <div *ngIf="showProgress">
+                  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+                  <h6 class="label-progress">Registrando Viajero</h6>
+                </div>
+              </div>
+            <a type="button " class="btn btn-outline-success col-12" (click)="registerViajero()">Registrar</a>
+          </form>
+        </div>
+
+        <div class="col-12 col-md-6 ">
+
+          <div class="card text-center">
+              <img class="card-img-top" [src]="URL_PUBLIC+'images/registro-viajero.png'" alt="Card image cap">
+            <div class="card-body text-left">
+                <h1>!BIENVENIDO VIAJERO!</h1>
+            </div>
+          </div>
+
+        </div>
+
+
+
+      </div>
+
+      <div class="col-12" *ngIf="option=='agencia'">
+          <div class="col-12 col-md-8 offset-md-2">
+            <h1 class="pad-bottom-30">Ingresa tus Datos</h1>
+            <form >
+
+              <div [formGroup]="representanteForm">
+                <h3 class="title"><i class="fas fa-user-circle"></i> Datos del Representante Legal</h3>
+                <div class="form-group">
+                    <label for="inputDniRepresentante">DNI</label>
+                    <input class="form-control"  formControlName="document"  id="inputDniRepresentante" name="dniRepresentante" tjNumber   [ngClass]="{ 'is-invalid': submitted && group2.document.errors }">
+
+                    <div *ngIf="group2.document.errors" class="invalid-feedback">
+                        <div *ngIf="group2.document.errors.required">
+                            El campo Dni es Obligatorio
+                        </div>
+                        <div *ngIf="group2.document.errors.minlength||group2.document.errors.maxlength">
+                            Ingrese un Dni Valido
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <label for="inputNameRepresentante">Nombre</label>
+                      <input type="text" formControlName="name"   class="form-control" id="inputNameRepresentante" name="nombreRepresentante" [ngClass]="{ 'is-invalid': submitted && group2.name.errors }">
+
+                      <div *ngIf="group2.name.errors" class="invalid-feedback">
+                          <div *ngIf="group2.name.errors.required">
+                              El campo Nombre es Obligatorio
+                          </div>
+                      </div>
+
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label for="inputLastNameRepresentante">Apellidos</label>
+                      <input type="text" formControlName="lastname"  class="form-control" id="inputLastNameRepresentante" name="apellidosRepresentante" [ngClass]="{ 'is-invalid': submitted && group2.lastname.errors }">
+
+                      <div *ngIf="group2.lastname.errors" class="invalid-feedback">
+                          <div *ngIf="group2.lastname.errors.required">
+                              El campo Apellidos es Obligatorio
+                          </div>
+                      </div>
+                    </div>
+                </div>
+                <h3 class="title"><i class="fas fa-user-circle"></i> Datos de Acceso</h3>
+                <div class="form-group">
+                    <label for="inputEmailRepresentante">Correo Eletronico</label>
+                    <input type="text" formControlName="email" class="form-control" id="inputEmailRepresentante" name="emailRepresentante" [ngClass]="{ 'is-invalid': submitted && group2.email.errors }">
+
+                    <div *ngIf="group2.email.errors" class="invalid-feedback">
+                        <div *ngIf="group2.email.errors.required">
+                            El campo Correo es Obligatorio
+                        </div>
+                        <div *ngIf="group2.email.errors.email">
+                            Ingrese un Correo Valido
+                        </div>
+                    </div>
+
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <label for="passwordRepresentante">Contraseña</label>
+                      <input type="password" formControlName="password" class="form-control" id="passwordRepresentante" name="passwordRepresentante" [ngClass]="{ 'is-invalid': submitted && group2.password.errors }">
+
+                      <div *ngIf="group2.password.errors" class="invalid-feedback">
+                          <div *ngIf="group2.password.errors.required">
+                              El campo Contraseña es Obligatorio
+                          </div>
+                      </div>
+
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label for="inputPasswordConfirmAgencia">Confirmar Contraseña</label>
+                      <input type="password"  formControlName="confirmPassword"  class="form-control" id="inputPasswordConfirmAgencia" name="passConfirm"  [ngClass]="{ 'is-invalid': submitted && group2.confirmPassword.errors }">
+
+                      <div *ngIf="submitted && group2.confirmPassword.errors" class="invalid-feedback">
+                        <div *ngIf="group2.confirmPassword.errors.required">
+                            Ingrese Confirmacion Contraseña
+                        </div>
+                        <div *ngIf="group2.confirmPassword.errors.mismatch && !group2.confirmPassword.errors.required">Las Contraseñas no coinciden</div>
+                      </div>
+
+                    </div>
+                </div>
+              </div>
+
+              <h3 class="title"><i class="fas fa-user-circle"></i> Datos de la Empresa</h3>
+              <div [formGroup]="empresaForm">
+
+                  <div class="form-row">
+                      <div class="form-group col-md-6">
+                        <label for="inputNameEmpresa">Nombre Comercial</label>
+                        <input type="text" formControlName="name" class="form-control" id="inputNameEmpresa" name="nombreEmpresa" [ngClass]="{ 'is-invalid': submitted && group3.name.errors }">
+
+                        <div *ngIf="group3.name.errors" class="invalid-feedback">
+                            <div *ngIf="group3.name.errors.required">
+                                El campo Nombre es Obligatorio
+                            </div>
+                        </div>
+                      </div>
+                      <div class="form-group col-md-6">
+                        <label for="inputRazonSocial">Razon Social</label>
+                        <input type="text" formControlName="businessName"  class="form-control" id="inputRazonSocial" name="razonSocialEmpresa" [ngClass]="{ 'is-invalid': submitted && group3.businessName.errors }">
+
+                        <div *ngIf="group3.businessName.errors" class="invalid-feedback">
+                            <div *ngIf="group3.businessName.errors.required">
+                                El campo Razon Social es Obligatorio
+                            </div>
+                        </div>
+                      </div>
+                  </div>
+                  <div class="form-row">
+                      <div class="form-group col-md-6">
+                        <label for="inputRucEmpresa">RUC</label>
+                        <input type="text" formControlName="ruc"   class="form-control" id="inputRucEmpresa" tjNumber name="rucEmpresa" [ngClass]="{ 'is-invalid': submitted && group3.ruc.errors }">
+
+                        <div *ngIf="group3.ruc.errors" class="invalid-feedback">
+                          <div *ngIf="group3.ruc.errors.required">
+                              El campo Ruc es Obligatorio
+                          </div>
+                          <div *ngIf="group3.ruc.errors.minlength||group3.ruc.errors.maxlength">
+                              Ingrese un Ruc Valido
+                          </div>
+                        </div>
+
+                      </div>
+                      <div class="form-group col-md-6">
+                        <label for="inputTelefonoEmpresa">Telefono</label>
+                        <input type="text" formControlName="phone"  class="form-control" id="inputTelefonoEmpresa" name="telefonoEmpresa" tjNumber [ngClass]="{ 'is-invalid': submitted && group3.phone.errors }">
+
+                        <div *ngIf="group3.phone.errors" class="invalid-feedback">
+                          <div *ngIf="group3.phone.errors.required">
+                              El campo Telefono es Obligatorio
+                          </div>
+                          <div *ngIf="group3.phone.errors.minlength||group3.phone.errors.maxlength">
+                              Ingrese un Telefono Valido
+                          </div>
+                        </div>
+
+
+                      </div>
+
+                  </div>
+                  <div class="form-row">
+                      <div class="form-group col-md-6">
+                          <label for="inputRegionEmpresa">Region</label>
+                          <select id="inputRegionEmpresa"  formControlName="region" class="form-control form-control-sm" name="regionEmpresa" [ngClass]="{ 'is-invalid': submitted && group3.region.errors }">
+                            <option value="Amazonas">Amazonas</option>
+                            <option value="Ancash">Ancash</option>
+                            <option value="Apurimac">Apurimac</option>
+                            <option value="Arequipa">Arequipa</option>
+                            <option value="Ayacucho">Ayacucho</option>
+                            <option value="Cajamarca">Cajamarca</option>
+                            <option value="Callao">Callao</option>
+                            <option value="Cusco">Cusco</option>
+                            <option value="Huancavelica">Huancavelica</option>
+                            <option value="Huanuco">Huanuco</option>
+                            <option value="Ica">Ica</option>
+                            <option value="Junin">Junin</option>
+                            <option value="La Libertad">La Libertad</option>
+                            <option value="Lambayeque">Lambayeque</option>
+                            <option value="Lima">Lima</option>
+                            <option value="Loreto">Loreto</option>
+                            <option value="Madre de Dios">Madre de Dios</option>
+                            <option value="Moquegua">Moquegua</option>
+                            <option value="Pasco">Pasco</option>
+                            <option value="Piura">Piura</option>
+                            <option value="Puno">Puno</option>
+                            <option value="San Martín">San Martín</option>
+                            <option value="Tacna">Tacna</option>
+                            <option value="Tumbes">Tumbes</option>
+                            <option value="Ucayali">Ucayali</option>
+                          </select>
+                          <div *ngIf="group3.region.errors" class="invalid-feedback">
+                            <div *ngIf="group3.region.errors.required">
+                                Seleccione su región
+                            </div>
+                          </div>
+                      </div>
+                      <div class="form-group col-md-6">
+                        <label for="inputWebEmpresa">Pagina Web ( Opcional )</label>
+                        <input type="text" formControlName="web" class="form-control" id="inputWebEmpresa" name="urlWebEmpresa">
+                      </div>
+
+                  </div>
+                  <div class="form-row">
+                      <div class="form-group col-md-12">
+                        <label for="inputDireccionEmpresa">Direccion</label>
+                        <input type="text" formControlName="address" class="form-control" id="inputDireccionEmpresa" name="direccionEmpresa" [ngClass]="{ 'is-invalid': submitted && group3.address.errors }">
+
+                        <div *ngIf="group3.address.errors" class="invalid-feedback">
+                            <div *ngIf="group3.address.errors.required">
+                                El campo Direccion es Obligatorio
+                            </div>
+                        </div>
+
+                      </div>
+
+                  </div>
+                  <div class="form-group">
+                    <div class="custom-file">
+                        <input type="file" (change)="onFile($event.target.files)" formControlName="logo" class="custom-file-input" id="customFile" [ngClass]="{ 'is-invalid': submitted && group3.logo.errors }">
+                        <label class="custom-file-label" for="customFile">Logo</label>
+
+                        <div *ngIf="group3.logo.errors" class="invalid-feedback">
+                            <div *ngIf="group3.logo.errors.required">
+                                El logo no ha sido ingresado :(
+                            </div>
+                        </div>
+                      </div>
+                  </div>
+
+
+                  <div class="custom-control custom-checkbox pad-bottom-30">
+                    <input type="checkbox" formControlName="accept" class="custom-control-input" id="customCheck2" [ngClass]="{ 'is-invalid': submitted && group3.accept.errors }">
+                    <label class="custom-control-label" for="customCheck2" >Acepto Los <a>terminos y condiciones de Uso</a> </label >
+
+                    <div *ngIf="group3.accept.errors" class="invalid-feedback">
+                        <div *ngIf="group3.accept.errors.required">
+                            Acepte Los terminos
+                        </div>
+                    </div>
+
+                  </div>
+
+              </div>
+
+              <div class="col-md-12 text-center">
+                <div *ngIf="showProgress">
+                  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+                  <h6 class="label-progress">Registrando Agencia</h6>
+                </div>
+              </div>
+
+
+              <button type="button" [disabled]="showProgress" (click)="registerAgencia()" class="btn btn-outline-success col-12">Registrar</button>
+            </form>
+          </div>
+      </div>
+    </div>
+
+  </div>
+
+  <notifier-container></notifier-container>
+

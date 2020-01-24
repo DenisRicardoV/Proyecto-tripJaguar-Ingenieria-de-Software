@@ -1,0 +1,43 @@
+<div class="row d-flex align-items-stretch">
+
+  <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch" *ngFor="let tour of tours" style="padding-bottom: 20px;">
+
+    <div class="card ">
+        <div class="card-header border-bottom-0 text-right">
+            <button type="button" class="btn btn-outline-warning"> Ver </button>
+
+        </div>
+        <div class="card-body pt-0">
+          <div class="row">
+              <div class="col-12 p-0">
+                <img [src]="URL_PUBLIC+'images/tours/'+tour.images[0]" alt="" class=" img-fluid" style="height: 200px;
+                width: 100%;">
+              </div>
+              <div class="col-12">
+                <h2 class="lead"><b>{{tour.nombre}}</b></h2>
+                <hr>
+                <p class="text-muted text-sm"><b>Descripcion: </b>{{ (tour.descripcion.length>30)? (tour.nombre | slice:0:30)+'..':(tour.descripcion) }} </p>
+
+                <p class="text-muted text-sm"><b>Duración: </b>{{tour.dias + ' dia(s)' + tour.horas + ' hora(s)'}} </p>
+
+                <p class="text-muted text-sm"><b>Departamento: </b> {{tour.departamento}} </p>
+                <p class="precio"><b>PRECIO: </b>S/. {{tour.precio}} </p>
+
+
+
+              </div>
+
+
+          </div>
+        </div>
+
+    </div>
+  </div>
+
+
+</div>
+
+
+
+
+

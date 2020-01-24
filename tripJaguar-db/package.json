@@ -1,0 +1,20 @@
+{
+  "name": "tripjaguar-db",
+  "version": "1.0.0",
+  "description": "A Simple Plataform db",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "standard"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^2.4.1",
+    "debug": "^4.1.0",
+    "firebase-admin": "^8.9.0"
+  },
+  "devDependencies": {
+    "standard": "^12.0.1"
+  }
+}

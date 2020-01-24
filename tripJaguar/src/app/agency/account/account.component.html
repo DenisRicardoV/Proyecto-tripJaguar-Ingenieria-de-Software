@@ -1,0 +1,154 @@
+<div class="row body text-center" *ngIf="showLoading" >
+
+  <div class="col-md-12 bloque">
+
+    <div>
+      <div class="spinner-grow text-danger loading" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+      <p class="mensaje">Iniciando ....</p>
+    </div>
+  </div>
+
+</div>
+
+
+
+<div *ngIf="!showLoading">
+
+  <h1 class="m-0 title">Cuenta Paypal</h1>
+
+
+
+
+    <div class="row">
+      <div class="col-12 ">
+
+        <div class="callout callout-info">
+          <h5><i class="fa fa-info"></i> Nota:</h5>
+          Esta pagina muestra la cuenta PayPal registrada a nombre de la agencia, especifique bien sus datos.
+        </div>
+
+        <div class="invoice p-3 mb-3">
+          <div class="row">
+            <div class="col-12">
+              <h4>
+                <i class="fa fa-globe"></i>Administra tu cuenta
+              </h4>
+            </div>
+            <!-- /.col -->
+          </div>
+          <div class="row">
+            <!-- accepted payments column -->
+            <div class="col-6">
+              <p class="lead">Metodo de pago:</p>
+              <img src="https://adminlte.io/themes/v3/dist/img/credit/paypal2.png" alt="Paypal">
+
+              <p class="text-muted well well-sm shadow-none" style="margin-top: 10px;">
+                TripJaguar solo acepta pagos por Paypal.
+              </p>
+            </div>
+            <!-- /.col -->
+            <div class="col-6" *ngIf="account">
+              <p class="lead">Datos de la cuenta</p>
+
+              <div class="table-responsive">
+                <table class="table">
+                  <tr>
+                    <th style="width:50%">Correo Electrónico:</th>
+                    <td>{{account.email}}</td>
+                  </tr>
+                  <tr>
+                    <th>Codigo de Transacción</th>
+                    <td>{{account.transaction}}</td>
+                  </tr>
+
+                </table>
+              </div>
+            </div>
+            <div class="col-6" *ngIf="!account">
+
+              <div class="table-responsive text-center">
+                  <p style="color: red;">No tiene  una cuenta registrada</p>
+                  <button type="button" class="btn btn-block btn-warning" data-toggle="modal" data-target="#modal-registro">Registrar Cuenta Paypal</button>
+              </div>
+            </div>
+            <!-- /.col -->
+          </div>
+
+        </div>
+      </div>
+
+
+    </div>
+
+
+</div>
+
+<div class="modal fase" id="modal-registro">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form  [formGroup]="cuentaForm" (ngSubmit)="onSubmit()" >
+
+        <div class="modal-header">
+          <h4 class="modal-title">Registrar cuenta</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+
+          <!-- Formulario -->
+
+            <div class="row card-body" >
+
+              <div class="col-12">
+                <div class="example-container">
+
+                  <mat-label>Email de la cuenta paypal</mat-label>
+                  <mat-form-field>
+                    <input matInput formControlName="email"  placeholder="">
+                  </mat-form-field>
+                  <mat-error>
+                    <span *ngIf="!cuentaForm.get('email').valid && submitted">
+                      Ingrese Correo Electrónico
+                    </span>
+                  </mat-error>
+
+                  <mat-label>Codigo de Transacción</mat-label>
+                  <mat-form-field>
+                    <input matInput formControlName="transaction"  placeholder="">
+                  </mat-form-field>
+                  <mat-error>
+                    <span *ngIf="!cuentaForm.get('transaction').valid && submitted">
+                      Ingrese código de transacción
+                    </span>
+                  </mat-error>
+
+                </div>
+
+
+              </div>
+            </div>
+
+            <div class="col-md-12 text-center">
+              <div *ngIf="showProgress">
+                <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+                <h6 class="label-progress">Registrando Cuenta Paypal</h6>
+              </div>
+            </div>
+
+        </div>
+        <div class="modal-footer justify-content-between">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button  [disabled]="loading"  class="btn btn-primary">Guardar</button>
+        </div>
+      </form>
+
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+
+<notifier-container></notifier-container>

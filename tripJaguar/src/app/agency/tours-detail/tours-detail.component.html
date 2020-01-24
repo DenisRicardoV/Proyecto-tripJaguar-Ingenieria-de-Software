@@ -1,0 +1,221 @@
+
+
+<div class="row body text-center" *ngIf="showLoading" >
+
+  <div class="col-md-12 bloque">
+
+    <div >
+      <div class="spinner-grow text-danger loading" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+      <p class="mensaje">Iniciando registro ....</p>
+    </div>
+  </div>
+
+</div>
+
+<div *ngIf="!enable && !showLoading">
+  <app-message [mensaje]="'Es necesario registrar su cuenta de PAYPAL, esto permitira a sus clientes poder hacer compras de su servicio.'" [color]="'white'"></app-message>
+
+</div>
+
+<div *ngIf="enable">
+
+  <h1 class="m-0 title">Registro Nuevo Tour</h1>
+
+  <div class="card card-vista">
+
+
+    <form  [formGroup]="tourForm" (ngSubmit)="onSubmit()" >
+
+      <div class="row card-body" >
+
+        <div class="col-12 col-md-6">
+
+          <div class="example-container">
+            <mat-label>Nombre</mat-label>
+            <mat-form-field>
+              <input matInput formControlName="nombre"  placeholder="">
+            </mat-form-field>
+            <mat-error>
+                <span *ngIf="!tourForm.get('nombre').valid  && submitted">
+                  Por favor ingrese el Nombre
+                </span>
+            </mat-error>
+
+            <mat-label>Descripción</mat-label>
+            <mat-form-field>
+              <textarea matInput formControlName="descripcion" placeholder="" rows="4"></textarea>
+            </mat-form-field>
+            <mat-error>
+                <span *ngIf="!tourForm.get('descripcion').valid && submitted">
+                  Por favor ingrese Descripcion
+                </span>
+            </mat-error>
+
+              <mat-label>Duracion</mat-label>
+              <div class="row">
+                <mat-form-field class="col-6">
+                    <mat-select formControlName="dias"  placeholder="Dias">
+                      <mat-option value="0">0 dias</mat-option>
+                      <mat-option value="1">1 Dia</mat-option>
+                      <mat-option value="2">2 Dias</mat-option>
+                      <mat-option value="3">3 Dias</mat-option>
+                      <mat-option value="4">4 Dias</mat-option>
+                      <mat-option value="5">5 Dias</mat-option>
+                      <mat-option value="6">6 Dias</mat-option>
+                      <mat-option value="7">7 Dias</mat-option>
+                      <mat-option value="8">8 Dias</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-error>
+                    <span *ngIf="!tourForm.get('dias').valid  && submitted">
+                      Ingrese dias
+                    </span>
+                </mat-error>
+                <mat-form-field class="col-6">
+                    <input matInput formControlName="horas" type="time" placeholder="Hora/Minutos" >
+                </mat-form-field>
+                <mat-error>
+                    <span *ngIf="!tourForm.get('horas').valid  && submitted">
+                      Ingrese Horas y minutos
+                    </span>
+                </mat-error>
+
+              </div>
+
+            <mat-label>Precio(Nuevos Soles)</mat-label>
+            <mat-form-field>
+              <span matPrefix>S/.&nbsp;</span>
+                <input matInput placeholder="" formControlName="precio" type="number" class="example-right-align">
+            </mat-form-field>
+            <mat-error>
+
+                <span *ngIf="!tourForm.get('precio').valid && submitted">
+                  Pro favor Ingrese Precio
+                </span>
+            </mat-error>
+
+            <mat-label>Itinerario</mat-label>
+            <mat-form-field>
+                <input matInput placeholder="Titulo" [(ngModel)]="itinerario.nombre"  [ngModelOptions]="{standalone: true}">
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="Descripcion de itinerario" [type]="text" [(ngModel)]="descripcion"  [ngModelOptions]="{standalone: true}">
+                <mat-icon class="fa fa-plus-circle ad-descripcion"  (click)="addDescripcion()"></mat-icon>
+            </mat-form-field>
+            <button type="button" class="btn btn-primary btn2" (click)="addItinerario()">Agregar Itinerario</button>
+            <ul class="list-group">
+              <li class="list-group-item" *ngFor="let i of itinerario.descripcion">{{i}}</li>
+            </ul>
+
+            <div *ngIf="itinerarios.length>0">
+              <mat-label>Lista de Itenerarios</mat-label>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item" *ngFor="let x of itinerarios"><label >Titulo: </label>{{ (x.nombre)? x.nombre:'sin Titulo' }}</li>
+              </ul>
+            </div>
+
+            <mat-error>
+                <span *ngIf="itinerarios.length==0 && intento">
+                  Por favor ingrese itinerario
+                </span>
+            </mat-error>
+
+
+
+          </div>
+
+        </div>
+
+        <div class="col-12 col-md-6">
+
+            <mat-form-field>
+              <mat-select placeholder="Seleccione el Departamento"  formControlName="departamento">
+                <mat-option *ngFor="let departamento of departamentos" [value]="departamento.nombre">
+                  {{departamento.nombre}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <mat-error>
+
+                <span *ngIf="!tourForm.get('departamento').valid && intento">
+                  Por favor Ingrese El Departamento
+                </span>
+            </mat-error>
+
+          <mat-label>Actividades</mat-label>
+
+          <div>
+            <div class="container-done">
+                <div
+                  cdkDropList
+                  #doneList="cdkDropList"
+                  [cdkDropListData]="done"
+                  [cdkDropListConnectedTo]="[todoList]"
+                  class="example-list is-invalid"
+                  (cdkDropListDropped)="drop($event)">
+                  <div class="example-box"  *ngFor="let item of done" cdkDrag>{{item.descripcion}}</div>
+
+                </div>
+                <mat-error >
+                  <span *ngIf="done.length==0 && intento">
+                    Por favor ingrese Actividades
+                  </span>
+                </mat-error>
+            </div>
+
+
+
+
+            <div class="container-todo">
+                <div
+                  cdkDropList
+                  #todoList="cdkDropList"
+                  [cdkDropListData]="todo"
+                  [cdkDropListConnectedTo]="[doneList]"
+                  class="example-list"
+                  (cdkDropListDropped)="drop($event)">
+                  <div class="example-box" *ngFor="let item of todo" cdkDrag>{{item.descripcion}}</div>
+                </div>
+            </div>
+
+          </div>
+          <mat-label class="text-center">Imagenes</mat-label>
+
+          <app-upload (filesEmit)="onImagenes($event)"></app-upload>
+
+          <mat-error>
+            <span *ngIf="imagenes.length==0 && intento">
+              Por favor ingrese Imagenes
+            </span>
+          </mat-error>
+
+        </div>
+        <!-- <div class="form-group"> -->
+          <div class="col-md-12 text-center">
+            <div *ngIf="submitted">
+              <div class="progress">
+                <div class="progress-bar progress-bar-striped bg-success progress-bar-animated" [ngStyle]="{'width': loadingPorcent+'%'}" role="progressbar"  aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+              <h6 class="label-progress">{{mensajeLoading}}</h6>
+            </div>
+
+
+            <button [disabled]="submitted"   class="btn btn-outline-success btn1">Success</button>
+
+          </div>
+        <!-- </div> -->
+      </div>
+    </form>
+
+
+
+
+  </div>
+
+
+</div>
+
+<notifier-container></notifier-container>

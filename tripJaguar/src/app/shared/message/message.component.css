@@ -1,0 +1,25 @@
+.body{
+  min-height: 400px;
+  padding: 0px;
+}
+
+.bloque{
+  padding: 10%;
+}
+
+.mensaje{
+  color: lightslategray;
+  font-size: larger;
+  font-family: -webkit-pictograph;
+}
+
+.bloque img{
+  width: 35%;
+}
+
+.loading{
+
+  width: 6rem;
+  height: 6rem;
+
+}

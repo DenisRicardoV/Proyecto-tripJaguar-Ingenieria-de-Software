@@ -1,0 +1,84 @@
+<div class="wrapper container-fluid" style="display: inline-flex;padding: 0;background: #e0dddd;">
+
+<!-- Main Sidebar Container -->
+  <aside class="main-sidebar sidebar-dark-primary elevation-4" style="position: relative;    width: 20%;">
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+
+      <!-- Sidebar user panel (optional) -->
+      <div class="user-panel mt-3 pb-3 mb-3" style="display: block;">
+        <div class="image col-12 text-center">
+          <img [src]="URL_PUBLIC+ 'images/agencies/'+generateurl(agencia)" style="width: 200px;height: 150px;" class="img-circle elevation-2" alt="User Image">
+        </div>
+        <div class="info col-12 text-center" style="display: block;">
+          <a href="#" style="color: orange;font-family: -webkit-body;width: 100%;" class="d-block">{{agencia.name}}</a>
+        </div>
+      </div>
+
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+              with font-awesome or any other icon font library -->
+          <li class="nav-item">
+              <a  class="nav-link" [routerLink]="['/agencia/dashboard']" routerLinkActive="active">
+                <i class="nav-icon fa fa-paypal"></i>
+                  <p>
+                  Dashboard
+                </p>
+              </a>
+          </li>
+
+          <li class="nav-header">Menu</li>
+          <li class="nav-item">
+            <a  class="nav-link" [routerLink]="['/agencia/cuenta-paypal']" routerLinkActive="active">
+              <i class="nav-icon fa fa-paypal"></i>
+               <p>
+                Cuenta Paypal
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a  class="nav-link" [routerLink]="['/agencia/tours/nuevo']" routerLinkActive="active">
+              <i class="nav-icon fa fa-image"></i>
+              <p>
+                Registrar Tour
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a  class="nav-link" [routerLink]="['/agencia/tours/lista']" routerLinkActive="active">
+              <i class="nav-icon fa fa-image"></i>
+              <p>
+                Mis Paquetes
+              </p>
+            </a>
+          </li>
+          <li class="nav-header">Estadísticas</li>
+
+
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>
+
+  <div class="container-fluid">
+    <!-- Main content -->
+    <section class="content col-12" style="padding-top: 50px;padding-bottom: 50px;">
+
+        <div *ngIf="!user.verify">
+          <app-message [mensaje]="mensaje" [color]="'transparent'"></app-message>
+        </div>
+        <div *ngIf="user.verify">
+          <router-outlet></router-outlet>
+        </div>
+
+    </section>
+
+  </div>
+</div>
+

@@ -1,0 +1,114 @@
+<div *ngIf="!tour$">
+  <!-- si no hay datos -->
+
+</div>
+
+<div class="col-12">
+
+    <div class="row  padding-body" *ngIf="tour$ | async as tour">
+
+      <div class="col-md-9 col-12">
+
+        <div class="row detalle">
+
+          <div class="col-12 col-sm-6">
+            <h3 class="d-inline-block d-sm-none">{{tour.nombre}}</h3>
+            <div class="col-12">
+              <img [src]="URL_PUBLIC+'images/tours/'+srcSeleccionado" class="product-image" alt="Product Image" style="height: 400px;">
+            </div>
+            <div class="col-12 product-image-thumbs">
+              <a (click)="seleccionarImage(url)" *ngFor="let url of tour.images; index as i;"><div class="product-image-thumb" [ngClass]="{'active': i==0 }"  ><img [src]="URL_PUBLIC+'images/tours/'+url" alt="Product Image"></div></a>
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-6">
+
+            <h3 class="my-3">{{tour.nombre}}</h3>
+            <p>{{tour.descripcion}}</p>
+
+            <hr>
+            <h4>Actividades</h4>
+            <div class="row" data-toggle="buttons">
+
+              <div class="col-4 text-center" *ngFor="let actividad of tour.actividades; index as i;" >
+                <img [src]="URL_PUBLIC+'images/actividades/'+actividad.imagen" alt="" style="width: 100%;">
+                <p class="text-mutte" style="text-decoration: underline;">{{actividad.descripcion}}</p>
+              </div>
+
+
+            </div>
+
+            <h4 class="mt-3"> <img [src]="URL_PUBLIC+'mapa.png'" alt=""> {{tour.departamento}}</h4>
+            <h4 class="mt-3"> <img [src]="URL_PUBLIC+'mapa.png'" alt="">Duración:  </h4><p> {{tour.dias+ ' día(s) y ' + tour.horas+ ' hora(s)' }}</p>
+
+
+            <div class="bg-gray py-2 px-3 mt-4">
+              <h2 class="mb-0">
+                S/.{{tour.precio}}
+              </h2>
+              <h4 class="mt-0">
+                <small>Por cada Persona</small>
+              </h4>
+            </div>
+
+
+          </div>
+
+
+
+        </div>
+
+
+      </div>
+
+      <div class="col-md-3 col-12">
+        <img [src]="URL_PUBLIC+'images/agencies/'+tour.agency.logo" width="100%">
+
+        <div class="card-group">
+          <div class="card">
+              <div class="card-header " >
+                  <h5 class="card-title title-reserva" >S. / {{tour.precio}} po persona</h5>
+              </div>
+            <div class="card-body">
+
+              <form  [formGroup]="reservaForm" (ngSubmit)="onSubmit()" >
+
+                  <div class="example-container">
+
+                    <mat-form-field class="example-full-width">
+                      <input formControlName="cantidad"   matInput placeholder="Cantidad de Pasajeros" type="number"  >
+                    </mat-form-field>
+
+
+                    <mat-form-field>
+                        <input formControlName="fecha"  matInput [matDatepicker]="picker" placeholder="Fecha de inicio del Tour" >
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+
+                    <mat-label class="text-center">
+                        <h3>Total: <p>S./{{reservaForm.value.cantidad *tour.precio}}</p> </h3>
+
+                    </mat-label>
+                  </div>
+
+                  <button  class="btn btn-outline-success col-12 text-center" >Reservar</button>
+
+              </form>
+
+
+
+
+            </div>
+          </div>
+
+          </div>
+
+      </div>
+
+    </div>
+
+
+</div>
+
+

@@ -1,0 +1,12 @@
+body{
+    font-family: 'Roboto', sans-serif, sans-serif, arial, verdana, sans-serif;
+    font-size: 14px;
+}
+
+#body-rutas{
+  padding: 50px 0px 50px 0px;  
+}
+#cuerpo-rutas{
+  min-height: 400px;
+
+}

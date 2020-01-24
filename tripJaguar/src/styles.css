@@ -1,0 +1,28 @@
+@import "../node_modules/angular-notifier/styles.css";
+/* @import ".../node_modules/angular-notifier/src/styles/core.scss";
+@import "[...]/node_modules/angular-notifier/src/styles/themes/material-theme.scss";
+@import "[...]/node_modules/angular-notifier/src/styles/types/type-success.scss";
+@import "[...]/node_modules/angular-notifier/src/styles/types/type-error.scss"; */
+/* You can add global styles to this file, and also import other style files */
+
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+
+.pad-top {
+    padding-top: 50px;
+}
+a{
+    cursor: pointer;
+}
+ 
+
+.pad-top-30{
+    padding-top: 30px;
+}
+.pad-bottom-30{
+    padding-bottom: 30px;
+}
+
+.padding-body{
+    padding: 50px 0px 50px 0px;  
+}

@@ -1,0 +1,113 @@
+.bloque .card{
+    border: 0px;
+    border-radius: 0px;
+}
+
+.jumbotron{
+    margin-bottom: 0px;
+    width: 100%;
+}
+
+.bloque .precio{
+    color: white;
+    background-color: #343a40;
+    padding: 10px;
+}
+.bloque .description{
+    font-size: large;
+    padding: 1.25rem 0.4rem 1.25rem 0.4rem;
+    font-weight: 600;
+}
+
+.bloque .title{
+    font-weight: bold;
+    padding-bottom: 30px;
+    color: sandybrown;
+    font-size: -webkit-xxx-large;
+}
+
+.bloque a:hover img  {
+    filter: brightness(110%);
+    -webkit-filter: brightness(110%);
+}
+.bloque a:hover .precio {
+    background-color: darkorange;
+}
+
+
+/*responsive*/
+
+@media (max-width: 768px) {
+
+    .bloque .title{
+        font-size: xx-large;
+    }
+
+
+}
+
+.departamentos .card-title{
+  color: darkorange;
+  font-family: unset;
+}
+.card-img-overlay button{
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  background: honeydew;
+}
+
+.card-img-overlay button:hover{
+  color: black;
+}
+
+
+
+
+
+
+
+.imagenFondo{
+  width: 100%;
+  height: 650px;
+}
+.carousel1 h3{
+  text-transform: uppercase;
+    font-weight: bold;
+    font-size: -webkit-xxx-large;
+
+}
+
+
+
+
+.multi-item-carousel .carousel-inner > .item {
+  transition: 0.6s ease-in-out all;
+}
+.multi-item-carousel .carousel-inner .active.left {
+  left: -33%;
+}
+.multi-item-carousel .carousel-inner .active.right {
+  left: 33%;
+}
+.multi-item-carousel .carousel-inner .next {
+  left: 33%;
+}
+.multi-item-carousel .carousel-inner .prev {
+  left: -33%;
+}
+.multi-item-carousel .carouse-control.left,
+.multi-item-carousel .carouse-control.right {
+  background-image: none;
+}
+@media all and (transform-3d), (-webkit-transform-3d) {
+  .multi-item-carousel .carousel-inner > .item {
+    transition: 0.6s ease-in-out all;
+    -webkit-backface-visibility: visible;
+    backface-visibility: visible;
+    -webkit-perspective: none;
+    -webkit-transform: none!important;
+    transform: none!important;
+  }
+}
+

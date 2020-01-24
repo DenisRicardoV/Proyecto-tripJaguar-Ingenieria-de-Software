@@ -1,0 +1,61 @@
+
+<div class="col-12">
+
+  <!-- CABECERA PARA CONTAR -->
+  <div class="row">
+    <div class="col-lg-3 col-6">
+      <!-- small box -->
+      <div class="small-box bg-info">
+        <div class="inner">
+          <h3>{{totalPaquetes}}</h3>
+
+          <p>Paquetes Turísticos</p>
+        </div>
+        <div class="icon">
+          <i class="ion ion-bag"></i>
+        </div>
+        <a  class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+      </div>
+    </div>
+    <!-- ./col -->
+  </div>
+
+  <!-- PRIMER GRAFICO -->
+  <div class="row body text-center" *ngIf="showLoading" >
+
+    <div class="col-md-12 bloque">
+
+      <div>
+        <div class="spinner-grow text-danger loading" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+        <p class="mensaje">Analizando datos ....</p>
+      </div>
+    </div>
+
+  </div>
+
+
+  <!-- SEGUNDO GRAFICO -->
+  <div class="card">
+
+
+    <div class="card-body" *ngIf="showPieGrafico">
+
+      <div class="col-12 text-center" >
+        <h3 class="text-center">ACTIVIDADES DE NUESTROS PAQUETES TURISTICOS</h3>
+
+        <canvas baseChart
+              [data]="pieChartData"
+              [labels]="pieChartLabels"
+              [chartType]="pieChartType"
+              (chartHover)="chartHovered($event)"
+              (chartClick)="chartClicked($event)"></canvas>
+          </div>
+    </div>
+
+
+  </div>
+
+
+</div>

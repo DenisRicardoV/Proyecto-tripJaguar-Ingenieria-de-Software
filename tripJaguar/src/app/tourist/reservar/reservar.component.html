@@ -1,0 +1,162 @@
+
+<div class="row ">
+
+  <div class="col-12">
+    <div class="row loader text-center" *ngIf="showLoading" >
+
+      <div class="col-md-12 bloque">
+
+        <div>
+          <div class="spinner-grow text-danger loading" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+          <p class="mensaje">Solicitando datos para proceder con la operación</p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="col-md-8 " *ngIf="!showLoading">
+    <mat-horizontal-stepper linear  #stepper>
+
+      <mat-step [stepControl]="formTurista" class="col-12" label="step 1">
+
+          <form class="example-form" [formGroup]="formTurista">
+            <ng-template matStepLabel>Datos del Viajero</ng-template>
+
+            <div class="row">
+
+                <mat-form-field class="example-full-width col-4">
+                  <input matInput formControlName="name" placeholder="Nombre" >
+                </mat-form-field>
+
+
+                <mat-form-field class="example-full-width col-4">
+                    <input matInput formControlName="email" type="email" placeholder="email" >
+                </mat-form-field>
+
+                <mat-form-field class="example-full-width col-4">
+                  <input matInput formControlName="phone" placeholder="Telefono" tjNumber>
+                </mat-form-field>
+
+
+                <mat-form-field class="example-full-width col-4">
+                  <mat-select formControlName="document" placeholder="Tipo de Documento">
+                    <mat-option value="dni">DNI</mat-option>
+                    <mat-option value="pasaporte">PASAPORTE</mat-option>
+
+                  </mat-select>
+                </mat-form-field>
+
+                <mat-form-field class="example-full-width col-4">
+                    <input matInput formControlName="numero" placeholder="Numero de Documento" tjNumber >
+                </mat-form-field>
+
+
+
+
+                <mat-form-field class="example-full-width col-4">
+                    <input matInput formControlName="city" placeholder="Ciudad" >
+                </mat-form-field>
+
+                <mat-form-field class="example-full-width col-4">
+                    <input matInput formControlName="address" placeholder="Direccion" >
+                </mat-form-field>
+
+
+
+
+            </div>
+
+          </form>
+
+      </mat-step>
+
+      <mat-step  [editable]="isFormTurista" label="step 2">
+
+
+          <ng-template matStepLabel>Realizar Operación</ng-template>
+
+              <div class="row">
+                    <div class="col-6 text-center">
+
+                        <div class="col-md-12 text-center">
+                          <div *ngIf="showProgress">
+                            <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+                            <h6 class="label-progress">Registrando su reserva</h6>
+                          </div>
+                        </div>
+                        <a  class="btn btn-primary" (click)="reservarTours()">Realizar Reserva</a>
+
+                    </div>
+                    <div class="col-6 text-center">
+
+                        <div *ngIf="idTransaction">
+                              <app-paypal
+                            (notify)="buyProduct($event)"
+                            [amount]="total"
+                            [idTransaction]="idTransaction"
+                            ></app-paypal>
+                        </div>
+
+                    </div>
+
+
+
+              </div>
+
+
+        <!-- <button type="button" class="btn btn-outline-success" (click)="verificarForm()">Proceder  A Pagar</button> -->
+
+      </mat-step>
+
+
+
+    </mat-horizontal-stepper>
+  </div>
+
+  <div class="col-md-4" *ngIf="!showLoading">
+
+        <div class="card mb-4 box-shadow">
+          <img class="card-img-top"  [src]="URL_PUBLIC+'images/tours/'+tourSelected.images[0]" style="height: 225px; width: 100%; display: block;"  data-holder-rendered="true">
+          <div class="card-body pt-0">
+
+            <div class="my-3 bg-white rounded box-shadow">
+              <h6 class="border-bottom border-gray pb-2 mb-0" style="
+              text-align: center;
+              font-size: xx-large;
+              text-transform: uppercase;
+              font-weight: bold;
+          "> {{tourSelected.nombre}} </h6>
+              <div class="media text-muted pt-3">
+                <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                  <strong class="d-block text-gray-dark">Fecha de Partida</strong>
+                  {{reserva.fecha | date:'MM/dd/yyyy'}}
+                </p>
+              </div>
+              <div class="media text-muted pt-3">
+                <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                  <strong class="d-block text-gray-dark">Numero de Personas</strong>
+                  {{reserva.cantidad}} Persona(s)
+                </p>
+              </div>
+              <div class="media text-muted pt-3 text-center">
+                <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray" style="font-size: 20px;font-family: serif;color: forestgreen;font-weight: bold;">
+                  <strong class="d-block text-gray-dark" style="font-size: x-large;">TOTAL</strong>
+                  {{total}}
+                </p>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+
+  </div>
+
+
+</div>
+
+<notifier-container></notifier-container>
