@@ -30,7 +30,7 @@
     "jsonwebtoken": "^8.5.1",
     "jwt-decode": "^2.2.0",
     "lodash": "^4.17.11",
-    "nodemailer": "^6.4.2",
+    "nodemailer": "^6.4.16",
     "request": "^2.88.0",
     "tripjaguar-db": "file:../tripjaguar-db"
   },
